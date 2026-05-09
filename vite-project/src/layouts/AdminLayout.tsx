@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import "tailwindcss/tailwind.css";
 
 const AdminLayout: React.FC = () => {
   return (
@@ -46,6 +47,20 @@ const AdminLayout: React.FC = () => {
                 Khóa đào tạo
               </NavLink>
             </li>
+
+            {/* <li>
+              <NavLink 
+                to="/teachers" 
+                style={({ isActive }) => ({
+                  display: 'flex', alignItems: 'center', padding: '12px 20px', textDecoration: 'none',
+                  color: isActive ? '#38bdf8' : '#cbd5e1',
+                  backgroundColor: isActive ? '#1e293b' : 'transparent',
+                  borderLeft: isActive ? '4px solid #38bdf8' : '4px solid transparent'
+                })}
+              >
+                Giảng viên
+              </NavLink>
+            </li> */}
           </ul>
         </nav>
       </aside>

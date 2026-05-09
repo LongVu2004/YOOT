@@ -1,14 +1,8 @@
 import React, { useState, useMemo } from "react";
-import { getAcademicLevel, getLevelColor } from "./index";
-
-type ManageStudent = {
-  id: number;
-  hoten: string;
-  phuhuynh: string;
-  sdt: string;
-  hocluc: string;
-  diem: number;
-};
+import { getAcademicLevel, getLevelColor } from "../Lesson_1/index"; // Thay đổi đường dẫn import nếu cần thiết
+import type { ManageStudent, FormError, FormField } from "./typesStudent";
+import AddStudentModal from "./components/AddStudentModal";
+import StudentTable from "./components/StudentTable";
 
 const StudentManagement: React.FC = () => {
   const [students, setStudents] = useState<ManageStudent[]>([
@@ -24,6 +18,37 @@ const StudentManagement: React.FC = () => {
   });
 
   const [editingStudent, setEditingStudent] = useState<ManageStudent | null>(null);
+  const [errors, setErrors] = useState<FormError>({});
+
+  const formFields: FormField[] = [
+    { key: "hoten", type: "text", placeholder: "Họ và tên học viên *" },
+    { key: "phuhuynh", type: "text", placeholder: "Tên phụ huynh" },
+    { key: "sdt", type: "text", placeholder: "Số điện thoại" },
+    { key: "diem", type: "number", placeholder: "Điểm trung bình (0-10) *", step: "0.1", min: "0", max: "10" }
+  ];
+
+  const handleValidate = () => {
+    const newErrors: FormError = {};
+
+    if (!newStudent.hoten.trim()) {
+      newErrors.hoten = "Họ và tên học viên không được để trống";
+    }
+
+    if (!newStudent.phuhuynh.trim()) {
+      newErrors.phuhuynh = "Tên phụ huynh không được để trống";
+    }
+
+    if (newStudent.diem <= 0 || newStudent.diem > 10) {
+      newErrors.diem = "Điểm phải từ 0 đến 10";
+    }
+
+    if (!/^\d{10}$/.test(newStudent.sdt)) {
+      newErrors.sdt = "Số điện thoại phải có 10 chữ số";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const filteredStudents = useMemo(() => {
     return students.filter(student =>
@@ -34,7 +59,7 @@ const StudentManagement: React.FC = () => {
   }, [students, search]);
 
   const handleAddStudent = () => {
-    if (!newStudent.hoten.trim()) return;
+    if (!handleValidate()) return;
 
     const academicLevel = getAcademicLevel(newStudent.diem);
     const student: ManageStudent = {
@@ -90,57 +115,16 @@ const StudentManagement: React.FC = () => {
       </div>
 
       {/* Table */}
-      <table className="student-table">
-        <thead>
-          <tr>
-            <th>Học viên</th>
-            <th>Phụ huynh</th>
-            <th>Số điện thoại</th>
-            <th>Điểm</th>
-            <th>Học lực</th>
-            <th>Thao tác</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredStudents.map(student => (
-            <tr key={student.id} className="student-row">
-              {editingStudent?.id === student.id ? (
-                <>
-                  <td><input className="form-input" value={editingStudent.hoten} onChange={e => setEditingStudent({...editingStudent, hoten: e.target.value})} /></td>
-                  <td><input className="form-input" value={editingStudent.phuhuynh} onChange={e => setEditingStudent({...editingStudent, phuhuynh: e.target.value})} /></td>
-                  <td><input className="form-input" value={editingStudent.sdt} onChange={e => setEditingStudent({...editingStudent, sdt: e.target.value})} /></td>
-                  <td><input type="number" step="0.1" className="form-input" value={editingStudent.diem} onChange={e => setEditingStudent({...editingStudent, diem: parseFloat(e.target.value)||0})} /></td>
-                  <td>
-                    <div className={`level-badge ${getLevelColor(editingStudent.hocluc).includes('#10b981') ? 'level-excellent' : ''}`} style={{backgroundColor: getLevelColor(getAcademicLevel(editingStudent.diem))}}>
-                      {getAcademicLevel(editingStudent.diem)}
-                    </div>
-                  </td>
-                  <td>
-                    <button className="btn btn-success" onClick={handleSaveEdit} style={{marginRight: '8px'}}>Lưu</button>
-                    <button className="btn btn-outline" onClick={() => setEditingStudent(null)}>Hủy</button>
-                  </td>
-                </>
-              ) : (
-                <>
-                  <td><strong>{student.hoten}</strong></td>
-                  <td>{student.phuhuynh}</td>
-                  <td>{student.sdt}</td>
-                  <td><strong>{student.diem}</strong></td>
-                  <td>
-                    <div className="level-badge" style={{ backgroundColor: getLevelColor(student.hocluc) }}>
-                      {student.hocluc}
-                    </div>
-                  </td>
-                  <td>
-                    <button className="btn btn-outline" onClick={() => setEditingStudent(student)} style={{marginRight: '8px'}}>Sửa</button>
-                    <button className="btn btn-danger" onClick={() => handleDelete(student.id)}>Xoá</button>
-                  </td>
-                </>
-              )}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <StudentTable
+        filteredStudents={filteredStudents}
+        editingStudent={editingStudent}
+        setEditingStudent={setEditingStudent}
+        formFields={formFields}
+        handleSaveEdit={handleSaveEdit}
+        handleDelete={handleDelete}
+        getAcademicLevel={getAcademicLevel}
+        getLevelColor={getLevelColor}
+      />
 
       {filteredStudents.length === 0 && (
         <p style={{ textAlign: 'center', padding: '40px', color: '#64748b' }}>
@@ -149,60 +133,18 @@ const StudentManagement: React.FC = () => {
       )}
 
       {/* Add Modal */}
-      {isAddModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h3 className="modal-title">Thêm học viên mới</h3>
-              <button className="btn btn-outline" onClick={() => setIsAddModalOpen(false)}>✕</button>
-            </div>
-            <div className="modal-body">
-              <input
-                className="form-input"
-                placeholder="Họ và tên học viên *"
-                value={newStudent.hoten}
-                onChange={e => setNewStudent({...newStudent, hoten: e.target.value})}
-              />
-              <input
-                className="form-input"
-                placeholder="Tên phụ huynh"
-                value={newStudent.phuhuynh}
-                onChange={e => setNewStudent({...newStudent, phuhuynh: e.target.value})}
-              />
-              <input
-                className="form-input"
-                placeholder="Số điện thoại"
-                value={newStudent.sdt}
-                onChange={e => setNewStudent({...newStudent, sdt: e.target.value})}
-              />
-              <input
-                type="number"
-                step="0.1"
-                min="0"
-                max="10"
-                className="form-input"
-                placeholder="Điểm trung bình (0-10) *"
-                value={newStudent.diem}
-                onChange={e => setNewStudent({...newStudent, diem: parseFloat(e.target.value)||0})}
-              />
-
-              {newStudent.diem > 0 && (
-                <div className="level-badge" style={{ 
-                  backgroundColor: getLevelColor(getAcademicLevel(newStudent.diem)),
-                  width: 'fit-content',
-                  margin: '12px 0'
-                }}>
-                  Học lực: {getAcademicLevel(newStudent.diem)}
-                </div>
-              )}
-
-              <button className="btn btn-primary" style={{width: '100%', padding: '14px'}} onClick={handleAddStudent}>
-                Thêm học viên
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <AddStudentModal
+        isAddModalOpen={isAddModalOpen}
+        setIsAddModalOpen={setIsAddModalOpen}
+        newStudent={newStudent}
+        setNewStudent={setNewStudent}
+        errors={errors}
+        setErrors={setErrors}
+        formFields={formFields}
+        handleAddStudent={handleAddStudent}
+        getAcademicLevel={getAcademicLevel}
+        getLevelColor={getLevelColor}
+      />
     </div>
   );
 };

@@ -5,10 +5,12 @@
 // import UsersWithMapAndFilter from './components/Lesson_1/UsersWithMapAndFilter';
 
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
-import CourseManagement from "./components/Lesson_2/CourseManagement"
+// import CourseManagement from "./components/Lesson_1/CourseManagement"
 import AdminLayout from "./layouts/AdminLayout"
+// import StudentManagement from "./components/Lesson_1/StudentManagement"
+// import DynamicForm from "./components/Lesson_2/pages/DynamicForm"
 import StudentManagement from "./components/Lesson_2/StudentManagement"
-// import StudentManagement from "./components/Lesson_2/StudentManagement"
+import CourseManagement from "./components/Lesson_2/CourseManagement"
 
 
 function App() {
@@ -36,21 +38,21 @@ function App() {
       {/* <UsersList /> */}
       {/* <UsersWithMapAndFilter /> */}
       {/* <StudentManagement /> */}
+      {/* <DynamicForm /> */}
       <BrowserRouter>
-      <Routes>
-        {/* Route cha sử dụng AdminLayout */}
-        <Route path="/" element={<AdminLayout />}>
-          
-          {/* Tự động chuyển hướng đến /courses khi vừa mở web */}
-          <Route index element={<Navigate to="/courses" replace />} />
-          
-          {/* Các route con sẽ được render vào vị trí của <Outlet /> */}
-          <Route path="courses" element={<CourseManagement />} />
-          <Route path="students" element={<StudentManagement />} />
-          
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        <Routes>
+          <Route path="/" element={<AdminLayout />}>
+            
+            {/* <Route index element={<Navigate to="/courses" replace />} />
+            <Route path="courses" element={<CourseManagement />} />
+            <Route path="students" element={<StudentManagement />} /> */}
+            
+            <Route index element={<Navigate to="/students" replace />} />
+            <Route path="students" element={<StudentManagement />} />
+            <Route path="courses" element={<CourseManagement />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 
