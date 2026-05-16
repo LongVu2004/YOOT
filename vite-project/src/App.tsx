@@ -5,12 +5,11 @@
 // import UsersWithMapAndFilter from './components/Lesson_1/UsersWithMapAndFilter';
 
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
-// import CourseManagement from "./components/Lesson_1/CourseManagement"
 import AdminLayout from "./layouts/AdminLayout"
-// import StudentManagement from "./components/Lesson_1/StudentManagement"
-// import DynamicForm from "./components/Lesson_2/pages/DynamicForm"
-import StudentManagement from "./components/Lesson_2/StudentManagement"
-import CourseManagement from "./components/Lesson_2/CourseManagement"
+import CourseManagement from "./components/Lesson_1/CourseManagement"
+import StudentManagement from "./components/Lesson_1/StudentManagement"
+import CourseTailwind from "./components/Lesson_1/TailwindCSS/Course/CourseManagement"
+import StudentTailwind from "./components/Lesson_1/TailwindCSS/Student/StudentManagement"
 
 
 function App() {
@@ -43,13 +42,13 @@ function App() {
         <Routes>
           <Route path="/" element={<AdminLayout />}>
             
-            {/* <Route index element={<Navigate to="/courses" replace />} />
+            <Route index element={<Navigate to="/courses" replace />} />
             <Route path="courses" element={<CourseManagement />} />
-            <Route path="students" element={<StudentManagement />} /> */}
-            
-            <Route index element={<Navigate to="/students" replace />} />
             <Route path="students" element={<StudentManagement />} />
-            <Route path="courses" element={<CourseManagement />} />
+            
+            <Route index element={<Navigate to="/students-tailwind" replace />} />
+            <Route path="students-tailwind" element={<StudentTailwind />} />
+            <Route path="courses-tailwind" element={<CourseTailwind />} />
           </Route>
         </Routes>
       </BrowserRouter>

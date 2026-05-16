@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import "tailwindcss/tailwind.css";
 
 const AdminLayout: React.FC = () => {
   return (
@@ -31,7 +30,20 @@ const AdminLayout: React.FC = () => {
                   borderLeft: isActive ? '4px solid #38bdf8' : '4px solid transparent'
                 })}
               >
-                Học viên
+                Học viên - React
+              </NavLink>
+            </li>
+            <li>
+              <NavLink 
+                to="/students-tailwind" 
+                style={({ isActive }) => ({
+                  display: 'flex', alignItems: 'center', padding: '12px 20px', textDecoration: 'none',
+                  color: isActive ? '#38bdf8' : '#cbd5e1',
+                  backgroundColor: isActive ? '#1e293b' : 'transparent',
+                  borderLeft: isActive ? '4px solid #38bdf8' : '4px solid transparent'
+                })}
+              >
+                Học viên - Tailwind
               </NavLink>
             </li>
             <li>
@@ -44,13 +56,12 @@ const AdminLayout: React.FC = () => {
                   borderLeft: isActive ? '4px solid #38bdf8' : '4px solid transparent'
                 })}
               >
-                Khóa đào tạo
+                Khóa đào tạo - React
               </NavLink>
             </li>
-
-            {/* <li>
+            <li>
               <NavLink 
-                to="/teachers" 
+                to="/courses-tailwind" 
                 style={({ isActive }) => ({
                   display: 'flex', alignItems: 'center', padding: '12px 20px', textDecoration: 'none',
                   color: isActive ? '#38bdf8' : '#cbd5e1',
@@ -58,30 +69,15 @@ const AdminLayout: React.FC = () => {
                   borderLeft: isActive ? '4px solid #38bdf8' : '4px solid transparent'
                 })}
               >
-                Giảng viên
+                Khóa đào tạo - Tailwind
               </NavLink>
-            </li> */}
+            </li>
           </ul>
         </nav>
       </aside>
 
       {/* --- KHU VỰC NỘI DUNG CHÍNH (BÊN PHẢI) --- */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', backgroundColor: '#f8fafc', overflow: 'hidden' }}>
-        
-        {/* Header ở trên cùng */}
-        <header style={{ height: '60px', backgroundColor: 'white', borderBottom: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px' }}>
-          <div style={{ cursor: 'pointer', fontSize: '20px' }}>☰</div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-            <span>🔔</span>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#1e293b' }}>Admin User</div>
-                <div style={{ fontSize: '12px', color: '#64748b' }}>Quản trị viên</div>
-              </div>
-              <div style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#cbd5e1' }}></div>
-            </div>
-          </div>
-        </header>
 
         {/* Nơi hiển thị các component con (CourseManagement, StudentManagement...) */}
         <main style={{ flex: 1, padding: '24px', overflowY: 'auto' }}>

@@ -15,11 +15,7 @@ type FormError = {
 };
 
 const StudentManagement: React.FC = () => {
-  const [students, setStudents] = useState<ManageStudent[]>([
-    { id: 1, hoten: "Nguyễn Văn A", phuhuynh: "Nguyễn Minh F", sdt: "0123456789", hocluc: "Tốt", diem: 8.5 },
-    { id: 2, hoten: "Lê Thị B", phuhuynh: "Lê Văn C", sdt: "0879456321", hocluc: "Trung bình", diem: 6.0 },
-    { id: 3, hoten: "Trần Hạo E", phuhuynh: "Trần Minh H", sdt: "0879456123", hocluc: "Yếu", diem: 4.5 },
-  ]);
+  const [students, setStudents] = useState<ManageStudent[]>([]);
 
   const [search, setSearch] = useState("");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -103,7 +99,7 @@ const StudentManagement: React.FC = () => {
           <h2>Thông tin chi tiết và theo dõi học tập</h2>
         </div>
         <button className="btn btn-primary" onClick={() => setIsAddModalOpen(true)}>
-          + Thêm học viên mới
+          + Thêm học viên
         </button>
       </div>
 

@@ -13,36 +13,7 @@ type FormError = {
 };
 
 const CourseManagement: React.FC = () => {
-  const [courses, setCourses] = useState<Course[]>([
-    {
-      id: 1,
-      name: "React Cơ bản",
-      description: "Khóa học React cho người mới bắt đầu",
-      duration: "3 tháng",
-      students: 45,
-    },
-    {
-      id: 2,
-      name: "JavaScript Advanced",
-      description: "JavaScript nâng cao và ES6+",
-      duration: "2 tháng",
-      students: 32,
-    },
-    {
-      id: 3,
-      name: "HTML/CSS",
-      description: "Nền tảng web development",
-      duration: "2 tháng",
-      students: 58,
-    },
-    {
-      id: 4,
-      name: "TypeScript",
-      description: "TypeScript từ cơ bản đến nâng cao",
-      duration: "2 tháng",
-      students: 28,
-    },
-  ]);
+  const [courses, setCourses] = useState<Course[]>([]);
 
   const [search, setSearch] = useState("");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
