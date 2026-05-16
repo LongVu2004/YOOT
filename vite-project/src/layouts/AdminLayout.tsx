@@ -48,6 +48,19 @@ const AdminLayout: React.FC = () => {
             </li>
             <li>
               <NavLink 
+                to="/students-Antd" 
+                style={({ isActive }) => ({
+                  display: 'flex', alignItems: 'center', padding: '12px 20px', textDecoration: 'none',
+                  color: isActive ? '#38bdf8' : '#cbd5e1',
+                  backgroundColor: isActive ? '#1e293b' : 'transparent',
+                  borderLeft: isActive ? '4px solid #38bdf8' : '4px solid transparent'
+                })}
+              >
+                Học viên - Antd
+              </NavLink>
+            </li>
+            <li>
+              <NavLink 
                 to="/courses" 
                 style={({ isActive }) => ({
                   display: 'flex', alignItems: 'center', padding: '12px 20px', textDecoration: 'none',
@@ -70,6 +83,19 @@ const AdminLayout: React.FC = () => {
                 })}
               >
                 Khóa đào tạo - Tailwind
+              </NavLink>
+            </li>
+            <li>
+              <NavLink 
+                to="/courses-Antd" 
+                style={({ isActive }) => ({
+                  display: 'flex', alignItems: 'center', padding: '12px 20px', textDecoration: 'none',
+                  color: isActive ? '#38bdf8' : '#cbd5e1',
+                  backgroundColor: isActive ? '#1e293b' : 'transparent',
+                  borderLeft: isActive ? '4px solid #38bdf8' : '4px solid transparent'
+                })}
+              >
+                Khóa đào tạo - Antd
               </NavLink>
             </li>
           </ul>

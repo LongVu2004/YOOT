@@ -1,16 +1,4 @@
-// import { useState } from 'react'
-// import ToggleButton from './components/Lesson_1/ToggleButton'
-// import InputPreview from './components/Lesson_1/InputPreview';
-// import UsersList from './components/Lesson_1/UsersList';
-// import UsersWithMapAndFilter from './components/Lesson_1/UsersWithMapAndFilter';
-
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
-import AdminLayout from "./layouts/AdminLayout"
-import CourseManagement from "./components/Lesson_1/CourseManagement"
-import StudentManagement from "./components/Lesson_1/StudentManagement"
-import CourseTailwind from "./components/Lesson_1/TailwindCSS/Course/CourseManagement"
-import StudentTailwind from "./components/Lesson_1/TailwindCSS/Student/StudentManagement"
-
+import AppRouter from './AppRouter';
 
 function App() {
   // const [count, setCount] = useState<number>(0);
@@ -38,7 +26,7 @@ function App() {
       {/* <UsersWithMapAndFilter /> */}
       {/* <StudentManagement /> */}
       {/* <DynamicForm /> */}
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<AdminLayout />}>
             
@@ -51,7 +39,8 @@ function App() {
             <Route path="courses-tailwind" element={<CourseTailwind />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
+      <AppRouter />
     </div>
   )
 
