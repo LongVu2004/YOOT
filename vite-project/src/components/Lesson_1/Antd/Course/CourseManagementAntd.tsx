@@ -155,9 +155,10 @@ const CourseManagement: React.FC = () => {
         <Input
           placeholder="Tìm kiếm..."
           onChange={(e) => setSearch(e.target.value)}
+          style={{ width: "900px" }}
         />
         <Button type="primary" onClick={() => setIsModalOpen(true)}>
-          + Thêm
+          + Thêm khóa học
         </Button>
       </Space>
 

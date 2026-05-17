@@ -1,4 +1,7 @@
-import AppRouter from './AppRouter';
+// import AppRouter from './AppRouter';
+import Header from './components/Lesson_4/demo-cartContext/layout/Header';
+import ProductPages from './components/Lesson_4/demo-cartContext/pages/ProductPages';
+import CartProvider from './components/Lesson_4/demo-cartContext/provider/cart/CartProvider';
 
 function App() {
   // const [count, setCount] = useState<number>(0);
@@ -40,7 +43,11 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter> */}
-      <AppRouter />
+      {/* <AppRouter />  */}
+      <CartProvider>
+        <Header />
+        <ProductPages />
+      </CartProvider>
     </div>
   )
 
