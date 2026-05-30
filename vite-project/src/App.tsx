@@ -1,7 +1,11 @@
-// import AppRouter from './AppRouter';
-import Header from './components/Lesson_4/demo-cartContext/layout/Header';
-import ProductPages from './components/Lesson_4/demo-cartContext/pages/ProductPages';
-import CartProvider from './components/Lesson_4/demo-cartContext/provider/cart/CartProvider';
+import AppRouter from './AppRouter';
+// import Header from './components/Lesson_4/demo-cartContext/layout/Header';
+// import ProductPages from './components/Lesson_4/demo-cartContext/pages/ProductPages';
+// import CartProvider from './components/Lesson_4/demo-cartContext/provider/cart/CartProvider';
+// import { TodoProvider } from './components/Lesson_4/demo_todoApp_useContext/provider/todo/TodoProvider';
+
+// import { TodoProvider } from "./components/Lesson_4/demo_todoApp_useContext/provider/todo/TodoProvider"
+// import { TodoAppPage } from "./components/Lesson_4/demo_todoApp_useContext/pages/TodoAppPage"
 
 function App() {
   // const [count, setCount] = useState<number>(0);
@@ -43,11 +47,15 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter> */}
-      {/* <AppRouter />  */}
-      <CartProvider>
+      <AppRouter /> 
+      {/* <CartProvider>
         <Header />
         <ProductPages />
-      </CartProvider>
+      </CartProvider> */}
+
+      {/* <TodoProvider>
+        <TodoAppPage />
+      </TodoProvider> */}
     </div>
   )
 

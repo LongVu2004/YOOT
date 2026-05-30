@@ -98,6 +98,71 @@ const AdminLayout: React.FC = () => {
                 Khóa đào tạo - Antd
               </NavLink>
             </li>
+            <li>
+              <NavLink 
+                to="/cart-context-useContext" 
+                style={({ isActive }) => ({
+                  display: 'flex', alignItems: 'center', padding: '12px 20px', textDecoration: 'none',
+                  color: isActive ? '#38bdf8' : '#cbd5e1',
+                  backgroundColor: isActive ? '#1e293b' : 'transparent',
+                  borderLeft: isActive ? '4px solid #38bdf8' : '4px solid transparent'
+                })}
+              >
+                CartContext - useContext
+              </NavLink>
+            </li>
+            <li>
+              <NavLink 
+                to="/cart-context-Reducer" 
+                style={({ isActive }) => ({
+                  display: 'flex', alignItems: 'center', padding: '12px 20px', textDecoration: 'none',
+                  color: isActive ? '#38bdf8' : '#cbd5e1',
+                  backgroundColor: isActive ? '#1e293b' : 'transparent',
+                  borderLeft: isActive ? '4px solid #38bdf8' : '4px solid transparent'
+                })}
+              >
+                CartContext - useReducer
+              </NavLink>
+            </li>
+            <li>
+              <NavLink 
+                to="/todo-app" 
+                style={({ isActive }) => ({
+                  display: 'flex', alignItems: 'center', padding: '12px 20px', textDecoration: 'none',
+                  color: isActive ? '#38bdf8' : '#cbd5e1',
+                  backgroundColor: isActive ? '#1e293b' : 'transparent',
+                  borderLeft: isActive ? '4px solid #38bdf8' : '4px solid transparent'
+                })}
+              >
+                Kanban Todo App - useContext
+              </NavLink>
+            </li>
+            <li>
+              <NavLink 
+                to="/todo-app-reducer" 
+                style={({ isActive }) => ({
+                  display: 'flex', alignItems: 'center', padding: '12px 20px', textDecoration: 'none',
+                  color: isActive ? '#38bdf8' : '#cbd5e1',
+                  backgroundColor: isActive ? '#1e293b' : 'transparent',
+                  borderLeft: isActive ? '4px solid #38bdf8' : '4px solid transparent'
+                })}
+              >
+                Kanban Todo App - useReducer
+              </NavLink>
+            </li>
+            <li>
+              <NavLink 
+                to="/cart-redux" 
+                style={({ isActive }) => ({
+                  display: 'flex', alignItems: 'center', padding: '12px 20px', textDecoration: 'none',
+                  color: isActive ? '#38bdf8' : '#cbd5e1',
+                  backgroundColor: isActive ? '#1e293b' : 'transparent',
+                  borderLeft: isActive ? '4px solid #38bdf8' : '4px solid transparent'
+                })}
+              >
+                Cart Redux
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </aside>
